@@ -74,7 +74,7 @@ var checks = [
   {
     func: function (node) {
       var expects = tooManyExpects(node);
-      var maxExpectCount = 4;
+      var maxExpectCount = 3;
       if (expects > maxExpectCount) {
         return {
           name: {
@@ -387,7 +387,7 @@ function outputTable(file, json) {
     table.push(newRow);
   });
   if (formatted.length) {
-    return '\n\n' + file + '\n' + table.toString();
+    return '\n\n' + file + '\n' + table.toString() + '\n';
   }
   return '';
 }

@@ -21,22 +21,23 @@ glob(pattern, null, function (er, files) {
     console.log(er);
     process.exit(1);
   }
+  console.log(JSON.stringify(files));
   var overallFiles = files.length;
   console.log(overallFiles + ' file(s) found.');
   console.time('Execution time');
   var output = '';
   for (var i = 0; i < overallFiles; i++) {
     var file = files[i];
-    console.log('processing [' + (i + 1) + ' of ' + overallFiles + ']' + file);
+    console.log('processing [' + (i + 1) + ' of ' + overallFiles + '] ' + file);
     var tree = esprima.parse(fs.readFileSync(file)).body;
     var parsedTree = utils.parseDescribes(tree);
     output += utils.outputTable(file, parsedTree);
-    if (args.f) {
-      fs.writeFileSync(args.f, output);
-    }
-    else {
-      console.log(output);
-    }
+  }
+  if (args.f) {
+    fs.writeFileSync(args.f, output);
+  }
+  else {
+    console.log(output);
   }
   console.timeEnd('Execution time');
 
