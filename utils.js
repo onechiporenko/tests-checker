@@ -392,7 +392,84 @@ function outputTable(file, json) {
   return '';
 }
 
+/**
+ * Move throw tree and detects number of each issue-type
+ * Example:
+ * <pre>
+ *   var tree = {
+ *    describes: [
+ *      {
+ *        name: 'a',
+ *        its: [
+ *          {name: {t: '', type: 'error'}},
+ *          {name: {t: '', type: 'warning'}}
+ *        ]
+ *      },
+ *      {
+ *        name: 'b',
+ *        its: [
+ *          {name: {t: '', type: 'error'}},
+ *          {name: {t: '', type: 'error'}},
+ *          {name: {t: '', type: 'warning'}}
+ *        ]
+ *      }
+ *    ]
+ *   };
+ *   var summary = getTreeSummary(tree, {});
+ *   console.log(summary); // {error: 3, warning: 2}
+ * </pre>
+ * May be used with already defined summary:
+ * <pre>
+ *   var summary = {error: 4, warning: 5, debug: 1};
+ *   summary = getTreeSummary(tree, summary); // `tree` is defined in the previous example
+ *   console.log(summary); // {error: 7, warning: 7, debug: 1}
+ * </pre>
+ *
+ * @param {object|object[]} tree
+ * @param {object} summary
+ * @returns {object}
+ */
+function getTreeSummary(tree, summary) {
+  var type = _getType(tree);
+  if (type === 'object') {
+    if (tree.type) {
+      if (!summary[tree.type]) {
+        summary[tree.type] = 0;
+      }
+      summary[tree.type]++;
+    }
+    else {
+      var keys = Object.keys(tree);
+      for(var j = 0; j < keys.length; j++) {
+        var key = keys[j];
+        summary = getTreeSummary(tree[key], summary);
+      }
+    }
+  }
+  if (type === 'array') {
+    for(var i = 0; i < tree.length; i++) {
+      summary = getTreeSummary(tree[i], summary);
+    }
+  }
+  return summary;
+}
+
+/**
+ * Print summary to the console using type-colors (error - red, warning - yellow etc)
+ *
+ * @param {object} summary
+ */
+function outputSummary(summary) {
+  Object.keys(summary).forEach(function (key) {
+    console.log(colors[key](key + '(s): ' + summary[key]));
+  });
+  console.log('\n');
+}
+
+
 module.exports = {
   parseDescribes: parseDescribes,
-  outputTable: outputTable
+  outputTable: outputTable,
+  getTreeSummary: getTreeSummary,
+  outputSummary: outputSummary
 };
