@@ -1,0 +1,21 @@
+{
+  "name": "tests-cleanup",
+  "version": "1.0.0",
+  "description": "Check mocha-tests for empty titles and stub/spy/restore usage in the `it`",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm test"
+  },
+  "author": "Oleg Nechiporenko <onechiporenko@apache.org> (https://github.com/onechiporenko)",
+  "license": "MIT",
+  "dependencies": {
+    "cli-table": "^0.3.1",
+    "colors": "^1.1.2",
+    "esprima": "^2.7.1",
+    "esprima-walk": "^0.1.0",
+    "glob": "^6.0.1",
+    "minimist": "^1.2.0",
+    "table": "^3.7.4",
+    "traverse": "^0.6.6"
+  }
+}
