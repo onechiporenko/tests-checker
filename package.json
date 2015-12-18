@@ -1,7 +1,7 @@
 {
   "name": "tests-checker",
   "version": "1.0.0",
-  "description": "Check mocha-tests for empty titles and stub/spy/restore usage in the `it`",
+  "description": "Check mocha-tests for code-issues",
   "main": "index.js",
   "author": "Oleg Nechiporenko <onechiporenko@apache.org> (https://github.com/onechiporenko)",
   "license": "MIT",
