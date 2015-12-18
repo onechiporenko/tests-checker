@@ -376,7 +376,6 @@ function jsonToTable(json) {
 function outputTable(file, json) {
   var formatted = jsonToTable(json);
   var table = new Table();
-  var cn = [];
   formatted.forEach(function(row) {
     var newRow = row.map(function (cell) {
       if (_getType(cell) === 'object') {
@@ -386,11 +385,11 @@ function outputTable(file, json) {
       return cell;
     });
     table.push(newRow);
-    cn.push(newRow);
   });
   if (formatted.length) {
-    return '\n' + file + '\n' + table.toString();
+    return '\n\n' + file + '\n' + table.toString();
   }
+  return '';
 }
 
 module.exports = {
