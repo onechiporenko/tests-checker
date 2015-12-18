@@ -5,6 +5,9 @@
   "main": "index.js",
   "author": "Oleg Nechiporenko <onechiporenko@apache.org> (https://github.com/onechiporenko)",
   "license": "MIT",
+  "bin": {
+    "tests-checker": "./bin/tests-checker"
+  },
   "dependencies": {
     "cli-table": "^0.3.1",
     "colors": "^1.1.2",

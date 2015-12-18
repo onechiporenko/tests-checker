@@ -12,12 +12,16 @@ Module checks tests written with mocha/chai/sinon for issues:
 git clone https://github.com/onechiporenko/tests-checker
 cd test-checker
 npm i
+# tests-checker will be available in your $PATH (optional)
+npm link
 ```
 
 ## Usage
 
 ```
 cd test-checker
+# or if you linked simply run
+tests-checker --help
 ```
 
 Help:
@@ -35,5 +39,5 @@ node index.js -p /my/folder/with/tests/**/*.js
 Check each file in the provided path and save results to the file
 
 ```
-node index.js -p /my/folder/with/tests/**/*.js -f output.txt --no-color 
+node index.js -p /my/folder/with/tests/**/*.js -f output.txt --no-color
 ```
