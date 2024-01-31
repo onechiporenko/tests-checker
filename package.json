@@ -13,7 +13,7 @@
     "colors": "^1.1.2",
     "esprima": "^2.7.1",
     "esprima-walk": "^0.1.0",
-    "glob": "^6.0.1",
+    "glob": "^10.0.0",
     "minimist": "^1.2.0",
     "traverse": "^0.6.6"
   },
